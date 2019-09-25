@@ -9,8 +9,7 @@ ENV BUILD_SCRIPT build:prod
 # get source code
 RUN mkdir -p $SRC_DIR
 WORKDIR $SRC_DIR
-# if necessary, do SSH setup here or copy source code from local or
-CI environment
+# if necessary, do SSH setup here or copy source code from local or CI environment
 RUN git clone $GIT_REPO .
 # COPY $SRC_CODE_LOCATION .
 
