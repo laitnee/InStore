@@ -1,5 +1,4 @@
-FROM minimal-node-build-env
- as builder
+FROM minimal-node-build-env as builder
 
 # project variables
 ENV SRC_DIR /usr/src
