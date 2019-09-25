@@ -25,7 +25,7 @@ ENV BUILDER_SRC_DIR /usr/src
 ENV SRC_DIR /usr/src
 ENV TEST_SCRIPT test:prod
 
-RUN mkdir -P $SRC_DIR
+RUN mkdir -p $SRC_DIR
 WORKDIR $SRC_DIR
 COPY --from=builder $BUILDER_SRC_DIR $SRC_DIR
 
@@ -35,7 +35,7 @@ CMD 'npm run $TEST_SCRIPT'
 
 #WEB SERVER STAGE
 
-FROM duluca/minimal-nginz-web-server:1.13.8-alpine
+FROM duluca/minimal-nginx-web-server:1.13.8-alpine
 ENV BUILDER_SRC_DIR /usr/src
 COPY --from=builder $BUILDER_SRC_DIR/dist /var/www
 CMD 'nginx'
