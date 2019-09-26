@@ -1,26 +1,41 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../core/auth/auth.service';
 
 @Component({
   selector: 'app-home',
   template: `
     <div fxLayout="column" fxLayoutAlign="center center">
-      <span class="mat-display-2"> hello, instore! </span>
-      <button mat-raised-button color="primary" routerLink="/manager">login as Manager</button>
+      <div *ngIf="displayLogin">
+        <app-login></app-login>
+      </div>
+      <div *ngIf="!displayLogin">
+        <span class="mat-display-3">
+          Free item for everybody yay!!
+        </span>
+      </div>
     </div>
   `,
   styles: [
-
     `
     div[fxLayout] { margin-top: 32 px;}
     `
   ]
 })
 export class HomeComponent implements OnInit {
+  private _displayLogin = true;
 
-  constructor() { }
+  constructor(private authService: AuthService) {
+
+   }
 
   ngOnInit() {
-    console.log('i was conte')
+    this.authService.authStatus.subscribe(
+      authStatus => (this._displayLogin = !authStatus.isAuthenticated)
+    );
+  }
+
+  get displayLogin() {
+    return this._displayLogin;
   }
 
 }
