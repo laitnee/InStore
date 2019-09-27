@@ -13,7 +13,7 @@ WORKDIR $SRC_DIR
 RUN git clone $GIT_REPO .
 # COPY $SRC_CODE_LOCATION .
 
-RUN npm install
+RUN yarn
 RUN npm run $BUILD_SCRIPT
 
 
